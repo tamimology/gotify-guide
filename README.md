@@ -16,6 +16,7 @@ This guide shows every possible configuration for using Gotify locally
 8. <a href="#synology-dsm-implementation">Synology DSM Implementation</a>
 9. <a href="#synology-download-station-implementation">Synology Download Station Implementation</a>
 10. <a href="#opnsense-monit-implementation">OPNSense Monit Implementation</a>
+11. <a href="#octoprint-implementation">OctoPrint Implementation</a>
 
 
 
@@ -385,6 +386,40 @@ Now, open OPNSense web UI, and navigate to *Services* --> *Monit* --> *Settings*
 - _Mail Server SSL Connection_: Un-Tick
 
 Click on _Apply_, and you should see an automatic notification coming to the web interface. If not, double-check that you captured the correct token and inserted the correct Gotify server domain URL above.
+
+
+
+## OctoPrint Implementation
+
+OctoPrint is used to manage sending STL 3D prints from the PC to the Printer via the local network. To check out how to install, you may find the compose <a href=https://github.com/tamimology/docker-containers#octoprint>here </a>
+
+Gotify does not have internal support; it requires installing a plugin. It can be a webhook plugin like <a href=https://github.com/2blane/OctoPrint-Webhooks>this one </a>, which I have not tried, as I was able to find a Gotify-specific plugin <a href=https://github.com/wireva/OctoPrint-Gotify> using this repo </a>.
+
+To install it, follow these steps:
+- Open OctoPrint
+- On the upper-right corner, click on the _tool_ icon to open the *Settings*
+- Head to _Plugin Manager_
+- Click on _Get More_ at the upper right side of the screen
+- Paste this `https://github.com/niwla23/OctoPrint-Gotify/archive/master.zip` into the _... from URL.._ and hit _Install_
+- Once installed, restart OctoPrint to activate the Plugin
+
+
+![octoprint-plugin](/screenshots/octoprint-plugin.png)
+
+Once OctoPrint is restarted, head back to *Settings* --> *Plugin Manager* --> *Gotify* and enable it by clicking the button on its right side
+
+
+![octoprint-enable-plugin](/screenshots/octoprint-enable-plugin.png)
+
+Now that the plugin has been enabled, head to *Gotify*, found on the left-side list at the end of the list
+
+Lastly, insert the *Gotify base URL* in #1 as `http://192.168.1.20:9999`, and in #2 insert the *App Key* generated previously. Click on _Save_ as in #3, and then *Test Gotify* as in #4, and you should see an automatic notification coming to the web interface. If not, double-check that you captured the correct token and inserted the correct Gotify server domain URL above.
+
+Now, as in #5 you can configure what are the *Events Notification* you need, along with their priority from _Lowest_ to _High_, or even turn it _Off_
+
+
+![octoprint-plugin-config](/screenshots/octoprint-plugin-config.png)
+
 
 
 
