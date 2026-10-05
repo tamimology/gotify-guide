@@ -2,21 +2,22 @@
 This guide shows every possible configuration for using Gotify locally
 
 
-#### Gotify is a great notification platform that I migrated to after being a Pushover user for more than 3 years. The reason was that initially, Pushover used to provide 10k free notifications per application, but starting May 2026, they made it per user instead, which caused me out of notification for 1 month, and that is when the 10k counter resets, and I decided to use Gotify a few days before the reset day. I did explore Ntfy, but did not like it much (personal opinion)
+#### Gotify is a great notification platform that I migrated to after being a Pushover user for more than 3 years. The reason was that initially, Pushover used to provide 10k free notifications per application, but starting May 2026, they made it per user instead, which caused me to be out of notifications for 1 month, and that is when the 10k counter resets, and I decided to use Gotify a few days before the reset day. I did explore Ntfy, but did not like it much (personal opinion)
 
 # Table of Contents
 
 1. <a href="#setting-up-gotify">Setting Up Gotify</a>
 2. <a href="#testing-gotify">Testing Gotify</a>
-3. <a href="#homeassistant-implementation">HomeAssistant Implementation</a>
-4. <a href="#apprise-api-implementation">Apprise-API Implementation</a>
-5. <a href="#netalertx-implementation">NetAlertX Implementation</a>
-6. <a href="#watchtower-implementation">Watchtower Implementation</a>
-7. <a href="#traccar-implementation">Traccar Implementation</a>
-8. <a href="#synology-dsm-implementation">Synology DSM Implementation</a>
-9. <a href="#synology-download-station-implementation">Synology Download Station Implementation</a>
-10. <a href="#opnsense-monit-implementation">OPNSense Monit Implementation</a>
-11. <a href="#octoprint-implementation">OctoPrint Implementation</a>
+3. <a href="#homeassistant">HomeAssistant </a>
+4. <a href="#apprise-api">Apprise-API</a>
+5. <a href="#netalertx">NetAlertX</a>
+6. <a href="#watchtower">Watchtower</a>
+7. <a href="#traccar">Traccar</a>
+8. <a href="#synology-dsm">Synology DSM</a>
+9. <a href="#synology-download-station">Synology Download Station</a>
+10. <a href="#opnsense-monit">OPNSense Monit</a>
+11. <a href="#octoprint">OctoPrint</a>
+12. <a href="#desktop-notification">Desktop Notification</a>
 
 
 
@@ -90,7 +91,7 @@ You should see a notification coming to the web interface. If not, double-check 
 
 
 
-## HomeAssistant Implementation
+## HomeAssistant
 
 If you are running Home Assistant and want to use Gotify as your notification platform instead of the default Companion App, then follow those steps.
 
@@ -157,7 +158,7 @@ You may add as many as you want in the _notify_ section with different names and
 
 
 
-## Apprise-API Implementation
+## Apprise-API
 
 This integration will be used for several integrations, so it is a good idea to have it ready beforehand.
 
@@ -200,7 +201,7 @@ To test it, click on the *NOTIFICATIONS* tab, write anything in the _Body_ secti
 
 
 
-## NetAlertX Implementation
+## NetAlertX
  
 NetAlertX uses the Apprise-API (check the previous step if you do not have it ready). You just need to enable the integration in NetAlertX, load it and then configure it.
 
@@ -218,7 +219,7 @@ Now, navigate to *Settings* --> *Publishers* and find *Apprise publisher_ and ex
 
 
 
-## Watchtower Implementation
+## Watchtower
 
 Watchtower also uses the built-in _shoutrrr_ integration. To set it up, you need to have Gotify server behind a domain name, i.e. _https://gotify.mydomain.com_. Next, you need to simply add an environment variable defining this service as follows:
 
@@ -237,13 +238,13 @@ For more details on how to set up Watchtower, check my full compose from <a href
 
 
 
-## Traccar Implementation
+## Traccar
 
 If you have Traccar installed, then follow those steps to integrate Gotify with it. Otherwise, check <a href=https://github.com/tamimology/docker-containers#traccar>here</a> to see how to install it.
 
 Traccar integration is a bit tricky; it is done via the SMS integration.
 
-First, you need to add a dummy mobile number in the settings by opening Traccar and navigating to *Settings* --> *Account* and expand *Preferences* and fill as follows
+First, you need to add a dummy mobile number in the settings by opening Traccar and navigating to *Settings* --> *Account* and expand *Preferences*, and filling it as follows
 
 ![traccar](/screenshots/traccar.png)
 
@@ -270,7 +271,7 @@ To test it, navigate to *Settings* --> *Notifications* and add a new notificatio
 
 
 
-## Synology DSM Implementation
+## Synology DSM
 
 Synology DSM 6.x is a bit tricky to implement as well; however, if you are using DSM 7.0 and above, then it is straightforward.
 
@@ -330,7 +331,7 @@ Click on _Apply_, then *Send a test email*, and you should see a notification co
 
 
 
-## Synology Download Station Implementation
+## Synology Download Station
 #### This is applicable on DSM 6.x. I have no idea how to do it on DSM7.0 and above, not sure if the previous step is the only step needed or not.
 
 Also, Synology Download Station uses email as its notification channel, but it is a different channel than the one we set up above for DSM. To configure this, open the *Personal* setting by clicking on the person icon in the top-right corner, then choose *Personal* --> *Email Account* tab --> *Add* --> *Customize*, and fill as follows:
@@ -359,7 +360,7 @@ Click on _Ok_,  then _Send a test message_, and you should see a notification co
 
 
 
-## OPNSense Monit Implementation
+## OPNsense Monit
 
 I use OPNsense as my firewall, and I like to use *Monit* as the notification integration. However, this also uses email channels, which makes it challenging. I know what we have done in Synology will not work, though, and that is why it is challenging.
 
@@ -367,7 +368,7 @@ To resolve it, we still need to use an SMTP-to-Gotify converter, but not via Doc
 
 First, make sure that you exposed port 1025 when deploying the Gotify container; in my guide, I have already included this.
 
-Second, install the SMTP-to-Gotify plugin from <a href=https://github.com/Bladeage/gotify-smtp> here </a>. Make sure to choose the correct hardware architecture build. Copy the downloaded _.so_ file into _/myvolume/docker/gotify/plugins_ folder, and restart the Gotify container.
+Second, install the SMTP-to-Gotify plugin from <a href=https://github.com/Bladeage/gotify-smtp> here</a>. Make sure to choose the correct hardware architecture build. Copy the downloaded _.so_ file into _/myvolume/docker/gotify/plugins_ folder, and restart the Gotify container.
 
 Once loaded, open Gotify web UI, navigate to the *Plugins* tab and enable the SMTP plugin
 
@@ -389,17 +390,17 @@ Click on _Apply_, and you should see an automatic notification coming to the web
 
 
 
-## OctoPrint Implementation
+## OctoPrint
 
 OctoPrint is used to manage sending STL 3D prints from the PC to the Printer via the local network. To check out how to install, you may find the compose <a href=https://github.com/tamimology/docker-containers#octoprint>here </a>
 
-Gotify does not have internal support; it requires installing a plugin. It can be a webhook plugin like <a href=https://github.com/2blane/OctoPrint-Webhooks>this one </a>, which I have not tried, as I was able to find a Gotify-specific plugin <a href=https://github.com/wireva/OctoPrint-Gotify> using this repo </a>.
+Gotify does not have internal support; it requires installing a plugin. It can be a webhook plugin like <a href=https://github.com/2blane/OctoPrint-Webhooks>this one</a>, which I have not tried, as I was able to find a Gotify-specific plugin <a href=https://github.com/wireva/OctoPrint-Gotify> using this repo</a>.
 
 To install it, follow these steps:
 - Open OctoPrint
 - On the upper-right corner, click on the _tool_ icon to open the *Settings*
 - Head to _Plugin Manager_
-- Click on _Get More_ at the upper right side of the screen
+- Click on _Get More_ at the upper-right side of the screen
 - Paste this `https://github.com/niwla23/OctoPrint-Gotify/archive/master.zip` into the _... from URL.._ and hit _Install_
 - Once installed, restart OctoPrint to activate the Plugin
 
@@ -421,6 +422,53 @@ Now, as in #5 you can configure what are the *Events Notification* you need, alo
 ![octoprint-plugin-config](/screenshots/octoprint-plugin-config.png)
 
 
+
+## Desktop Notification
+
+You can also have a desktop application installed that shows every single notification received by Gotify. The application is compatible with Windows, macOS, and Linux.
+Since I am a Linux user, I will be showing the guide for that; however, the same still applies to other OS versions.
+
+
+First step is youi need to head to your Gotify server, i.e.  _http://192.168.1.20:9999_, then on the top right menu, go to _Clients_ and _Create Client_. Insert the name of the client, i.e. _Desktop App_, and enter the priority needed, i.e. _4_.
+
+Take note of the generated Token, and save it somewhere safe, as *it will only be shown once*, and it is needed in the coming steps below.
+
+- Download the latest application release from <a href=https://github.com/ma9icat/gotify-desktop/releases> here</a>. Install it and open it
+- On the left side, click on the second icon (_Servers_) as below and click on the *+* button at the lower right corner
+
+
+![desktop-app-new](/screenshots/desktop-app-new.png)
+#### The above translates into (from top to bottom): _Messages, Servers and Settings_
+
+
+- Insert Gotify's server URL in the first box, i.e. _http://192.168.1.20:9999_
+- Insert the previously generated *Client Token* in the second box
+- Enter the server's name in the third box, i.e. _My Gotify_
+- Click on the blue button (_Save_) to save the configuration
+
+On the new screen, you will see a new server showing up, with 3 buttons below it, which translate into (left to right): *Connect, Edit, and Delete*. Click on the *Connect* button. Once it connects to the server successfully, it will show a green icon next to the server's name, as in below. Then you can click on the first item in the left list (_Messages_) to see what you have received. If not, recheck the settings by clicking on the secont icon (_Edit_) and make sure the server and/or app token are correct.
+
+
+![desktop-app-main](/screenshots/desktop-app-main.png)
+
+
+Now click on the third item in the left list (*Settings*). The below are what each item translates to in order, top to bottom. Choose what is relevant to your needs
+- Launch on startup
+  - The application automatically starts with the system.
+- Run in system tray after closing
+  - Minimize to the system tray when closing the window.
+- Silent launch
+  - Do not show the main window when launching.
+- Enable system notifications
+  - Pop up a system notification when a new message is received.
+- Log Level
+  - Controls the level of detail for log output (requires an application restart after changes).
+- Current Version
+
+Then the buttons are from left to right: Save Settings, and Check for Updates
+
+
+![desktop-app-settings](/screenshots/desktop-app-settings.png)
 
 
 
