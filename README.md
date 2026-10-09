@@ -429,7 +429,7 @@ You can also have a desktop application installed that shows every single notifi
 Since I am a Linux user, I will be showing the guide for that; however, the same still applies to other OS versions.
 
 
-First step is youi need to head to your Gotify server, i.e.  _http://192.168.1.20:9999_, then on the top right menu, go to _Clients_ and _Create Client_. Insert the name of the client, i.e. _Desktop App_, and enter the priority needed, i.e. _4_.
+The first step is that you need to head to your Gotify server, i.e.  _http://192.168.1.20:9999_, then in the top right menu, go to _Clients_ and _Create Client_. Insert the name of the client, i.e. _Desktop App_, and enter the priority needed, i.e. _4_.
 
 Take note of the generated Token, and save it somewhere safe, as *it will only be shown once*, and it is needed in the coming steps below.
 
@@ -446,7 +446,7 @@ Take note of the generated Token, and save it somewhere safe, as *it will only b
 - Enter the server's name in the third box, i.e. _My Gotify_
 - Click on the blue button (_Save_) to save the configuration
 
-On the new screen, you will see a new server showing up, with 3 buttons below it, which translate into (left to right): *Connect, Edit, and Delete*. Click on the *Connect* button. Once it connects to the server successfully, it will show a green icon next to the server's name, as in below. Then you can click on the first item in the left list (_Messages_) to see what you have received. If not, recheck the settings by clicking on the secont icon (_Edit_) and make sure the server and/or app token are correct.
+On the new screen, you will see a new server showing up, with 3 buttons below it, which translate into (left to right): *Connect, Edit, and Delete*. Click on the *Connect* button. Once it connects to the server successfully, it will show a green icon next to the server's name, as in below. Then you can click on the first item in the left list (_Messages_) to see what you have received. If not, recheck the settings by clicking on the second icon (_Edit_) and make sure the server and/or app token are correct.
 
 
 ![desktop-app-main](/screenshots/desktop-app-main.png)
